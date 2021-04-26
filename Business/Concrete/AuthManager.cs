@@ -1,4 +1,6 @@
-﻿using Business.Abstract;
+﻿using System;
+using System.Collections.Generic;
+using Business.Abstract;
 using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -107,6 +109,21 @@ namespace Business.Concrete
         {
             _groupService.AddUser(groupId, userMail);
             return new SuccessResult();
+        }
+
+        public IDataResult<List<Group>> UserGroups(string userEmail)
+        {
+            List<Group> groups = new List<Group>();
+            var user = _userService.GetByMail(userEmail);
+            string[] groupIds = user.Data.JoinedGroupIds.Split(',');
+            foreach (var groupId in groupIds)
+            {
+                var groupIdInt = Convert.ToInt32(groupId);
+                var result = _groupService.GetByGroupId(groupIdInt).Data;
+                groups.Add(result);
+            }
+
+            return new SuccessDataResult<List<Group>>(groups);
         }
     }
 }

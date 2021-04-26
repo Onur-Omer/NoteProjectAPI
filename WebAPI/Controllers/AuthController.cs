@@ -75,5 +75,18 @@ namespace WebAPI.Controllers
 
             return BadRequest(result.Message);
         }
+
+        [HttpGet("usergroups")]
+        public ActionResult UserGroups(string userEmail)
+        {
+           var result =_authService.UserGroups(userEmail);
+            if (result.Success)
+            {
+                return Ok(result.Data);
+            }
+           
+            return BadRequest(result.Message);
+          
+        }
     }
 }

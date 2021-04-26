@@ -15,29 +15,7 @@ namespace WebAPI.Controllers
             _userNoteService = userNoteService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
-        {
-            var result = _userNoteService.GetAll();
 
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _userNoteService.GetById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
 
         [HttpGet("getallbyuserid")]
         public IActionResult GetAllByUserId(int id)

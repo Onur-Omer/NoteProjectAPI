@@ -1,4 +1,5 @@
-﻿using Core.Entities.Concrete;
+﻿using System.Collections.Generic;
+using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using Core.Utilities.Security.JWT;
 using Entities.DTOs;
@@ -13,5 +14,6 @@ namespace Business.Abstract
         IResult UserExists(string email);
         IDataResult<AccessToken> CreateAccessToken(User user);
         IResult ShareGroup(int groupId, string userMail);
+        IDataResult<List<Group>> UserGroups(string userEmail);
     }
 }

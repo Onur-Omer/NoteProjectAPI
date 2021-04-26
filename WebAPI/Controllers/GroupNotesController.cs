@@ -15,29 +15,6 @@ namespace WebAPI.Controllers
             _groupNoteService = groupNoteService;
         }
 
-        [HttpGet("getall")]
-        public IActionResult GetAll()
-        {
-            var result = _groupNoteService.GetAll();
-
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _groupNoteService.GetById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
 
         [HttpGet("getallbyuserid")]
         public IActionResult GetAllByUserId(int id)
